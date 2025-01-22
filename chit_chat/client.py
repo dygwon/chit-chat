@@ -24,7 +24,7 @@ if __name__ == '__main__':
         print('Usage: python client.py MESSAGE HOST PORT')
     message = sys.argv[1]
     
-    if num_args < 3:
+    if num_args < 4:
         host = con.HOST
         port = con.PORT
     else:

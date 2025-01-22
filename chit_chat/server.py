@@ -34,7 +34,7 @@ if __name__ == '__main__':
         host = con.HOST
         port = con.PORT
     else:
-        host = sys.argv[2]
-        port = int(sys.argv[3])
+        host = sys.argv[1]
+        port = int(sys.argv[2])
         
     asyncio.run(main(host, port))
