@@ -1,6 +1,6 @@
 import sys
 import asyncio
-import constants as con
+import chit_chat.constants as con
 
 
 async def handle_echo(reader, writer):
