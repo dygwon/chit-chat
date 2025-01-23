@@ -1,20 +1,30 @@
 import sys
+import random
 import asyncio
 import chit_chat.constants as con
 
 
 async def handle_echo(reader, writer):
-    data = await reader.read(100)
-    message = data.decode()
-    addr = writer.get_extra_info('peername')
     
-    print(f'Received {message!r} from {addr!r}')
     
-    print(f'Send: {message!r}')
-    writer.write(data)
-    await writer.drain()
+    while True:
+        data = await reader.read(100)
+        message = data.decode()
+        if message == con.EXIT:
+            break
+        
+        addr = writer.get_extra_info('peername')
+        print(f'Received {message!r} from {addr!r}')
+        
+        print(f'Send: {random.choice([
+            "Thanks for the response!",
+            "Got it!",
+            "What else can I help you with?",
+            "Howdy, partner."])!r}')
+        writer.write(data)
+        await writer.drain()
     
-    print('Close the connection')
+    print('Closing the connection.')
     writer.close()
     await writer.wait_closed()
     

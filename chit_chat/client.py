@@ -6,11 +6,15 @@ import chit_chat.constants as con
 async def tcp_echo_client(message, host, port):
     reader, writer = await asyncio.open_connection(host=host, port=port)
     
-    print(f'Send: {message!r}')
-    writer.write(message.encode())
+    while True:
+        message = input(f'Client: ')
+        if message == con.EXIT:
+            break
+        
+        writer.write(message.encode())
     
-    data = await reader.read(100)
-    print(f'Received: {data.decode()!r}')
+        data = await reader.read(100)
+        print(f'Server: {data.decode()!r}')
     
     print('Close the connection')
     writer.close()
