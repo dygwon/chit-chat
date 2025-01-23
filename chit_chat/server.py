@@ -8,7 +8,7 @@ async def handle_echo(reader, writer):
     
     
     while True:
-        data = await reader.read(100)
+        data = await reader.read()
         message = data.decode()
         if message == con.EXIT:
             break
