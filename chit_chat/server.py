@@ -16,12 +16,13 @@ async def handle_echo(reader, writer):
         addr = writer.get_extra_info('peername')
         print(f'Received {message!r} from {addr!r}')
         
-        print(f'Send: {random.choice([
+        response = random.choice([
             "Thanks for the response!",
             "Got it!",
             "What else can I help you with?",
-            "Howdy, partner."])!r}')
-        writer.write(data)
+            "Howdy, partner."])
+        print(f'Send: {response!r}')
+        writer.write(response)
         await writer.drain()
     
     print('Closing the connection.')
