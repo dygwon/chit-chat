@@ -22,7 +22,7 @@ async def handle_echo(reader, writer):
             "What else can I help you with?",
             "Howdy, partner."])
         print(f'Send: {response!r}')
-        writer.write(response)
+        writer.write(response.encode())
         await writer.drain()
     
     print('Closing the connection.')
